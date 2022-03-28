@@ -1,0 +1,42 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Vault and GitHub demo
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  Get-a-Secret:
+    runs-on: self-hosted
+    steps:
+      - name: Add masks for the environment variables
+        run: |
+          echo "::add-mask::$ROLE_ID"
+          echo "::add-mask::$SECRET_ID"
+      
+      - name: Import environment variables
+        run: |
+          echo ROLE_ID="$ROLE_ID" >> $GITHUB_ENV
+          echo SECRET_ID="$SECRET_ID" >> $GITHUB_ENV
+
+      - name: Retrieve the secret
+        uses: hashicorp/vault-action@v2.3.1
+        with:
+          url: http://localhost:8200
+          method: approle
+          roleId: ${{ env.ROLE_ID }}
+          secretId: ${{ env.SECRET_ID }}
+          secrets: |
+            secret/data/github-runner the_secret | THE_SECRET ;
+
+      - name: Prove it
+        run: |
+          echo $THE_SECRET | cut -d . -f 1
+          echo $THE_SECRET | cut -d . -f 2
