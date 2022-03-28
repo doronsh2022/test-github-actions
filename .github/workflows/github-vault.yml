@@ -33,6 +33,7 @@ jobs:
           method: approle
           roleId: ${{ env.ROLE_ID }}
           secretId: ${{ env.SECRET_ID }}
+          tlsSkipVerify: true
           secrets: |
             /dicom-gateway/client-test/us-east/oauth2 client_id | THE_SECRET ;
 
