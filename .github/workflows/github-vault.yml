@@ -29,12 +29,12 @@ jobs:
       - name: Retrieve the secret
         uses: hashicorp/vault-action@v2.3.1
         with:
-          url: http://localhost:8200
+          url: https://vaultazure.philips-hdstest.com:8200
           method: approle
           roleId: ${{ env.ROLE_ID }}
           secretId: ${{ env.SECRET_ID }}
           secrets: |
-            secret/data/github-runner the_secret | THE_SECRET ;
+            /dicom-gateway/client-test/us-east/oauth2 client_id | THE_SECRET ;
 
       - name: Prove it
         run: |
