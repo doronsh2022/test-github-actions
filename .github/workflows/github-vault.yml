@@ -30,8 +30,9 @@ jobs:
           roleId: ${{ env.ROLE_ID }}
           secretId: ${{ env.SECRET_ID }}
           tlsSkipVerify: true
+          exportEnv: true
           secrets: |
-           dicom-gateway/data/client-test/us-east/oauth2 client-id| CLIENT_ID ;
+            dicom-gateway/data/client-test/us-east/oauth2 client-id | CLIENT_ID ;
 
       - name: Prove it
         run: |
