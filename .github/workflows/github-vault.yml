@@ -16,10 +16,6 @@ jobs:
   Get-a-Secret:
     runs-on: self-hosted
     steps:
-      - name: Add masks for the environment variables
-        run: |
-          echo "::add-mask::$ROLE_ID"
-          echo "::add-mask::$SECRET_ID"
       
       - name: Import environment variables
         run: |
