@@ -31,7 +31,7 @@ jobs:
           secretId: ${{ env.SECRET_ID }}
           tlsSkipVerify: true
           secrets: |
-            dicom-gateway/data/client-test/us-east/oauth2 client_secret | THE_SECRET ;
+            dicom-gateway/data/client-test/us-east/oauth2 client-id | THE_SECRET ;
 
       - name: Prove it
         run: |
