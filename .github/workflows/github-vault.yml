@@ -21,9 +21,6 @@ jobs:
         run: |
           echo ROLE_ID="$ROLE_ID" >> $GITHUB_ENV
           echo SECRET_ID="$SECRET_ID" >> $GITHUB_ENV
-          echo http_proxy="http://185.46.212.97:9480" >> $GITHUB_ENV
-          echo https_proxy="http://185.46.212.97:9480" >> $GITHUB_ENV
-          echo no_proxy=".philips.com,192.168.99.100" >>  $GITHUB_ENV
 
       - name: Retrieve the secret
         uses: hashicorp/vault-action@v2.3.1
