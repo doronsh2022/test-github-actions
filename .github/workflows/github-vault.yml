@@ -31,7 +31,7 @@ jobs:
           secretId: ${{ env.SECRET_ID }}
           tlsSkipVerify: true
           secrets: |
-            devops/data/azure/app/hds-devops clientId | ARM_CLIENT_ID ;
+           dicom-gateway/data/client-test/us-east/oauth2 client-id| CLIENT_ID ;
 
       - name: Prove it
         run: |
